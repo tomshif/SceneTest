@@ -78,7 +78,7 @@ class GameViewController: NSViewController {
         
 
     blobNode.runAction(SCNAction.repeatForever(SCNAction.sequence([SCNAction.scale(to: 1.1, duration: 1.5), SCNAction.scale(to: 0.9, duration: 1.5)])))
-        blobNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1.0)))
+        //blobNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1.0)))
         scene.rootNode.addChildNode(blobNode)
         blobNode.position=SCNVector3(x: 0, y: 0, z: 0)
         let blobMat=SCNMaterial()
@@ -95,9 +95,35 @@ class GameViewController: NSViewController {
         let shell=SCNSphere(radius: random(min: blobSize*1.01, max: blobSize*1.5))
         let shellNode=SCNNode(geometry: shell)
         blobNode.addChildNode(shellNode)
-        shell.firstMaterial?.diffuse.contents=NSColor(calibratedRed: random(min: 0, max: 1), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 0.8)
-        let shellspeed=random(min: -2, max: 2)
+        //shell.firstMaterial?.diffuse.contents=NSColor(calibratedRed: random(min: 0, max: 1), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 0.8)
+        let shellspeed=random(min: -4, max: 4)
         shellNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: shellspeed, z: 0, duration: 1.0)))
+        
+        let shellMat=SCNMaterial()
+        
+        let shellNum=Int(random(min: 1, max: 6.99999))
+        let shellTex=SKTexture(imageNamed: "blob0\(shellNum)")
+        shellMat.diffuse.contents=shellTex
+        shellMat.transparency=random(min: 0.0, max: 0.6)
+        let shellMode=random(min: 0, max: 1)
+        if shellMode > 0.75
+        {
+            shellMat.blendMode=SCNBlendMode.add
+        }
+        else if shellMode > 0.5
+        {
+            shellMat.blendMode=SCNBlendMode.multiply
+        }
+        else if shellMode > 0.25
+        {
+            shellMat.blendMode=SCNBlendMode.subtract
+        }
+        shell.firstMaterial?=shellMat
+
+        
+        
+        
+        
         
         let moon=SCNSphere(radius: random(min: 0.1, max: 1.0))
         moonNode=SCNNode(geometry: moon)
