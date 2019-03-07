@@ -14,6 +14,7 @@
 		F4D191DB223024DA00A70D2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4D191D9223024DA00A70D2D /* Main.storyboard */; };
 		F4D191E7223024DA00A70D2D /* SceneTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D191E6223024DA00A70D2D /* SceneTestTests.swift */; };
 		F4D191F2223024DA00A70D2D /* SceneTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D191F1223024DA00A70D2D /* SceneTestUITests.swift */; };
+		F4D1920022302D7000A70D2D /* random.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D191FF22302D7000A70D2D /* random.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		F4D191ED223024DA00A70D2D /* SceneTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SceneTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D191F1223024DA00A70D2D /* SceneTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTestUITests.swift; sourceTree = "<group>"; };
 		F4D191F3223024DA00A70D2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4D191FF22302D7000A70D2D /* random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = random.swift; sourceTree = "<group>"; };
+		F4D192012230735400A70D2D /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +102,14 @@
 			isa = PBXGroup;
 			children = (
 				F4D191D1223024D800A70D2D /* AppDelegate.swift */,
+				F4D191FF22302D7000A70D2D /* random.swift */,
 				F4D191D3223024D800A70D2D /* GameViewController.swift */,
 				F4D191D5223024D800A70D2D /* art.scnassets */,
 				F4D191D7223024DA00A70D2D /* Assets.xcassets */,
 				F4D191D9223024DA00A70D2D /* Main.storyboard */,
 				F4D191DC223024DA00A70D2D /* Info.plist */,
 				F4D191DD223024DA00A70D2D /* SceneTest.entitlements */,
+				F4D192012230735400A70D2D /* texture.png */,
 			);
 			path = SceneTest;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4D1920022302D7000A70D2D /* random.swift in Sources */,
 				F4D191D4223024D800A70D2D /* GameViewController.swift in Sources */,
 				F4D191D2223024D800A70D2D /* AppDelegate.swift in Sources */,
 			);
