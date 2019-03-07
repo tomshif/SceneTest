@@ -94,7 +94,7 @@ class GameViewController: NSViewController {
         
         let shell=SCNSphere(radius: random(min: blobSize*1.01, max: blobSize*1.5))
         let shellNode=SCNNode(geometry: shell)
-        //blobNode.addChildNode(shellNode)
+        blobNode.addChildNode(shellNode)
         shell.firstMaterial?.diffuse.contents=NSColor(calibratedRed: random(min: 0, max: 1), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 0.8)
         let shellspeed=random(min: -2, max: 2)
         shellNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: shellspeed, z: 0, duration: 1.0)))
@@ -108,15 +108,40 @@ class GameViewController: NSViewController {
         MOONDIST=random(min: blobSize*1.0, max: blobSize*4.0)
         MOONSPEED=random(min: -0.15, max: 0.15)
         
+        
+        let moonChance=random(min: 0, max: 1)
+        if moonChance > 0.75
+        {
         let moon2=SCNSphere(radius: random(min: 0.1, max: 1.0))
         moonNode2=SCNNode(geometry: moon2)
-        //blobNode.addChildNode(moonNode2)
+        blobNode.addChildNode(moonNode2)
         moonNode2.position.x=7
         moon2.firstMaterial?.diffuse.contents=NSColor(calibratedRed: random(min: 0, max: 1), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 1.0)
         
         MOON2DIST=random(min: blobSize*1.0, max: blobSize*4.0)
         MOON2SPEED=random(min: -0.15, max: 0.15)
-        
+        }
+        else if moonChance > 0.0
+        {
+            let radius=random(min: blobSize*1.0, max: blobSize*2.5)
+            let pipe=random(min: 0.2, max: 1.0)
+            let moon2=SCNTorus(ringRadius: radius, pipeRadius: pipe)
+            moonNode2=SCNNode(geometry: moon2)
+            
+            //moon2.firstMaterial?.diffuse.contents=NSColor(calibratedRed: random(min: 0, max: 1), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 1.0)
+            blobNode.addChildNode(moonNode2)
+            MOON2DIST=0
+            MOON2SPEED=0
+            moonNode2.eulerAngles=SCNVector3(random(min: -CGFloat.pi/2, max: CGFloat.pi/2), 0, 0)
+            let moonMat=SCNMaterial()
+            
+            let moonNum=Int(random(min: 1, max: 6.99999))
+            let moonTex=SKTexture(imageNamed: "blob0\(moonNum)")
+            moonMat.diffuse.contents=moonTex
+            moon2.firstMaterial?=moonMat
+            let moon2Rot=random(min: -1.5, max: 1.5)
+                    moonNode2.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: moon2Rot, y: 0, z: 0, duration: 1.0)))
+        }
         
         
         // retrieve the SCNView
