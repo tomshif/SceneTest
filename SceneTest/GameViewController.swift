@@ -87,7 +87,7 @@ class GameViewController: NSViewController {
         let blobTex=SKTexture(imageNamed: "blob0\(blobnum)")
         blobMat.diffuse.contents=blobTex
         blob.firstMaterial?=blobMat
-        
+        //blobMat.lightingModel
         //blob.firstMaterial?.diffuse.contents=NSImage(named: "blob03")
         //blob.firstMaterial?.diffuse.contents=NSColor(calibratedRed: random(min: 0, max: 1), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 1.0)
         
@@ -97,14 +97,35 @@ class GameViewController: NSViewController {
         blobNode.addChildNode(shellNode)
         //shell.firstMaterial?.diffuse.contents=NSColor(calibratedRed: random(min: 0, max: 1), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 0.8)
         let shellspeed=random(min: -4, max: 4)
-        shellNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: shellspeed, z: 0, duration: 1.0)))
         
+        let shellDirection=random(min: 0, max: 1)
+        if shellDirection > 0.80
+        {
+            shellNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: shellspeed, z: 0, duration: 1.0)))
+        }
+        else if shellDirection > 0.60
+        {
+            shellNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0 , z: shellspeed, duration: 1.0)))
+        }
+        else if shellDirection > 0.4
+        {
+            shellNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: shellspeed, y: 0 , z: 0, duration: 1.0)))
+        }
+        else if shellDirection > 0.2
+        {
+            shellNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: shellspeed, y: 0 , z: shellspeed, duration: 1.0)))
+        }
+        else
+        {
+            shellNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: shellspeed, y: shellspeed , z: -shellspeed, duration: 1.0)))
+        }
         let shellMat=SCNMaterial()
         
         let shellNum=Int(random(min: 1, max: 6.99999))
         let shellTex=SKTexture(imageNamed: "blob0\(shellNum)")
         shellMat.diffuse.contents=shellTex
         shellMat.transparency=random(min: 0.0, max: 0.6)
+        
         let shellMode=random(min: 0, max: 1)
         if shellMode > 0.75
         {
